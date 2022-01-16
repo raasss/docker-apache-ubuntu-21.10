@@ -1,0 +1,4 @@
+**/000-default.conf
+**/docker-entrypoint.sh
+**/Dockerfile
+**/servername.conf

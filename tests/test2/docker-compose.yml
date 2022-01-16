@@ -1,0 +1,36 @@
+version: '3.7'
+
+networks:
+  private:
+    driver: bridge
+
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - private
+    ports:
+      - "80"
+      - "443"
+    environment:
+     - PHP_FPM_SERVER=php-fpm
+    volumes:
+      - type: bind
+        source: ./htdocs
+        target: /var/www/html
+        read_only: true
+
+  php-fpm:
+    image: raasss/php-fpm-ubuntu-21.10:latest
+    networks:
+      - private
+    ports:
+      - "9000"
+    volumes:
+      - type: bind
+        source: ./htdocs
+        target: /var/www/html
+    cap_add:
+      - SYS_PTRACE
