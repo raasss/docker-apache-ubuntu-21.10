@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:21.10
 
 ENV PHP_FPM_SERVER php-fpm-server
 ENV PHP_FPM_PORT 9000
